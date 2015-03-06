@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     
     //variables
     
+    
     var bet = 1.00
     var money = 100.00
     var deckOfCards = DeckOfCards()
