@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  Blackjack_hw1
+//  Blackjack_hw2
 //
 //  Created by Nicole Effendy on 2/16/15.
 //  Copyright (c) 2015 Nicole Effendy. All rights reserved.
