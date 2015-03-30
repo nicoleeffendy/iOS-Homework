@@ -8,6 +8,8 @@
 
 import UIKit
 
+var money = 100
+
 class ViewController: UIViewController {
     
     var sharedData: Singleton = Singleton.sharedInstance
@@ -26,6 +28,12 @@ class ViewController: UIViewController {
         DealerCards.text = temp
     }
     
+    func hideDealer(){
+        var temp:String = "DEALER'S CARDS"
+        DealerCards.text = temp
+        
+        DealerStatus.text = nil
+    }
     
     func displayPlayerCards(){
         var temp = " "
@@ -90,11 +98,16 @@ class ViewController: UIViewController {
         
     }
     
-    func update(){
+    func revealDealer(){
         displayDealerCards()
+        displayDealerHand()
+    }
+    
+    func update(){
+        //displayDealerCards()
         displayPlayerCards()
         displayAICards()
-        displayDealerHand()
+//      displayDealerHand()
         displayPlayerHand()
         displayAIHand()
         displayDealerStatus()
@@ -117,18 +130,28 @@ class ViewController: UIViewController {
     }
     
     func displayMoney(){
-        var money = 100
+        
+        //println("before: \(money)")
+        
         let bet = getBet()
         
         if players.hand.score == 21 {
             moneyLabel.text = "\(money + bet)"
+            money += bet
         }
         else if players.hand.score > dealer.hand.score && players.hand.score < 21 && dealer.hand.score > 17{
             moneyLabel.text = "\(money + bet)"
+            
+            money += bet
         }
         else {
             moneyLabel.text = "\(money - bet)"
+            money -= bet
         }
+        
+       // println("after: \(money)")
+        
+        
     
        
         
@@ -137,16 +160,30 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        //share data for number of decks
         var deckCount = sharedData.deckCount
         sharedData.deck = Deck(num:deckCount)
-        stepper.maximumValue = 100
-        stepper.wraps = true
-        stepper.autorepeat = true
         println(deckCount)
         
+        //stepper for bet
+        stepper.maximumValue = 100
+        stepper.minimumValue = 1
+        stepper.wraps = true
+        stepper.autorepeat = true
+       
+        //settings
         PlayerStatus.text = nil
         AIStatus.text = nil
         DealerStatus.text = nil
+        betLabel.text = "1"
+        
+        //displayDealerCards()
+        displayPlayerCards()
+        displayAICards()
+        displayPlayerHand()
+        displayAIHand()
+        
         
 //        if PlayerStatus.text == "Bust" {
 //            artIntelligence.play()
@@ -183,13 +220,19 @@ class ViewController: UIViewController {
             println("AI PLAY")
             artIntelligence.play()
             println("DEALER PLAY")
-            dealer.play()}
+            revealDealer()
+            println("Dealer revealed")
+            dealer.play()
+            println("dealer finish playing")
+        }
         
 //        while artIntelligence.play(){
 //            if //AI stands {
 //            dealer.play()
 //        }
         update()
+        println("finish update")
+       
     }
     
     @IBAction func DealButton(sender: AnyObject) {
@@ -205,7 +248,11 @@ class ViewController: UIViewController {
         PlayerStatus.text = nil
         AIStatus.text = nil
         DealerStatus.text = nil
+        betLabel.text = "1"
+        
         update()
+        hideDealer()
+        println("hide dealer")
         
         
         

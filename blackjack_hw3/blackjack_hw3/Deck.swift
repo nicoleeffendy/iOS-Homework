@@ -41,6 +41,8 @@ class Deck {
             println("shuffled")
         }
         
+        println("complete shuffle")
+        
     }
     
     func dealCard() -> Card {

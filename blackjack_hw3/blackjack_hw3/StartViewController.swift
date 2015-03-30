@@ -25,6 +25,8 @@ class StartViewController: UIViewController {
         stepper.minimumValue = 1
         stepper.wraps = true
         stepper.autorepeat = true
+        
+        DeckLabel.text = "1"
     }
 
     override func didReceiveMemoryWarning() {
