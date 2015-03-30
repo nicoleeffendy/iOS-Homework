@@ -11,9 +11,13 @@ import Foundation
 class Deck {
     //properties
     var deck:[Card] = []
+    var num_val = 0
+    var suits = ["♠", "♥", "♦", "♣"]
+    var cards = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
     
     //initialization
     init(num:Int){
+        num_val = num
         var suits = ["♠", "♥", "♦", "♣"]
         var cards = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
         
@@ -31,14 +35,15 @@ class Deck {
     //methods
     
     func shuffle() {
-        var numCard = deck.count
+        deck.removeAll()
        
-        for i in 0...numCard {
-            var randVal = Int(arc4random_uniform(UInt32(numCard - i)))
-            var temp = deck[i]
-            deck[i] = deck[randVal]
-            deck[randVal] = temp
-            println("shuffled")
+        for numDeck in 0...num_val{
+            for suit in suits{
+                for card in cards{
+                    var card_deck = Card(suit: suit, value: card)
+                    deck.append(card_deck)
+                }
+            }
         }
         
         println("complete shuffle")

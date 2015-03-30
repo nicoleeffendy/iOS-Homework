@@ -178,6 +178,8 @@ class ViewController: UIViewController {
         DealerStatus.text = nil
         betLabel.text = "1"
         
+        displayMoney()
+        
         //displayDealerCards()
         displayPlayerCards()
         displayAICards()
