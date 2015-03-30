@@ -40,6 +40,8 @@ class ViewController: UIViewController {
         for card in artIntelligence.hand.hand {
             temp += card.getCardInfo()
         }
+        
+        AICards.text = temp
     }
     
     func displayDealerHand(){
@@ -142,7 +144,15 @@ class ViewController: UIViewController {
         stepper.autorepeat = true
         println(deckCount)
         
+        PlayerStatus.text = nil
+        AIStatus.text = nil
+        DealerStatus.text = nil
         
+//        if PlayerStatus.text == "Bust" {
+//            artIntelligence.play()
+//            dealer.play()
+//            println("player bust")
+//        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -170,7 +180,15 @@ class ViewController: UIViewController {
     @IBAction func StandButton(sender: AnyObject) {
         println("Stand")
         if players.hand.score < 21 {
-            dealer.play() }
+            println("AI PLAY")
+            artIntelligence.play()
+            println("DEALER PLAY")
+            dealer.play()}
+        
+//        while artIntelligence.play(){
+//            if //AI stands {
+//            dealer.play()
+//        }
         update()
     }
     
@@ -178,11 +196,15 @@ class ViewController: UIViewController {
         println("Deal")
         players.hand.newHand()
         dealer.hand.newHand()
+        artIntelligence.hand.newHand()
         gameCount += 1
         if gameCount >= 5 {
             sharedData.deck.shuffle()
             gameCount = 0
         }
+        PlayerStatus.text = nil
+        AIStatus.text = nil
+        DealerStatus.text = nil
         update()
         
         
@@ -216,9 +238,7 @@ class ViewController: UIViewController {
     @IBAction func BetStepper(sender: UIStepper) {
         betLabel.text = Int(sender.value).description
     }
-//    @IBAction func BetStepper(sender: AnyObject) {
-//        betLabel.text = Int(sender.value).description
-//    }
+
     
 
 }

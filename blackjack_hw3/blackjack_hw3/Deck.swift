@@ -38,6 +38,7 @@ class Deck {
             var temp = deck[i]
             deck[i] = deck[randVal]
             deck[randVal] = temp
+            println("shuffled")
         }
         
     }

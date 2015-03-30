@@ -43,14 +43,7 @@ class Hand {
         hand.append(sharedData.deck.dealCard())
     }
     
-    func Blackjack () ->Bool{
-        if score == 21 {
-            return true
-        }
-        else{
-            return false
-        }
-    }
+
     
   
 }
