@@ -135,27 +135,41 @@ class ViewController: UIViewController {
         
         let bet = getBet()
         
-        if players.hand.score == 21 {
-            moneyLabel.text = "\(money + bet)"
+        if players.hand.score == 21 { //blackjack
             money += bet
-        }
-        else if players.hand.score > dealer.hand.score && players.hand.score < 21 && dealer.hand.score > 17{
             moneyLabel.text = "\(money + bet)"
             
+        }
+        else if ((players.hand.score > dealer.hand.score) && (dealer.hand.score > 17) && (players.hand.score < 21)) { //player is higher scorer than dealer and did not bust
             money += bet
+            moneyLabel.text = "\(money + bet)"
+            
+            
         }
-        else {
-            moneyLabel.text = "\(money - bet)"
-            money -= bet
+            
+        else if dealer.hand.score > 21 { //dealer goes bust
+            money += bet
+            moneyLabel.text="\(money + bet)"
+            
         }
+            
+//        else {
+//            moneyLabel.text = "\(money - bet)"
+//            money -= bet
+//        }
         
        // println("after: \(money)")
-        
-        
     
        
         
     }
+    
+    func displayBet(){
+        let bet = getBet()
+        moneyLabel.text = "\(money - bet)"
+        money -= bet
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -178,13 +192,17 @@ class ViewController: UIViewController {
         DealerStatus.text = nil
         betLabel.text = "1"
         
-        displayMoney()
+        
+        //displayMoney()
+        displayBet()
         
         //displayDealerCards()
         displayPlayerCards()
         displayAICards()
         displayPlayerHand()
         displayAIHand()
+        
+        
         
         
 //        if PlayerStatus.text == "Bust" {
@@ -211,6 +229,7 @@ class ViewController: UIViewController {
             return
         }
         
+        //displayMoney()
         update()
 
     }
@@ -218,7 +237,7 @@ class ViewController: UIViewController {
     
     @IBAction func StandButton(sender: AnyObject) {
         println("Stand")
-        if players.hand.score < 21 {
+       // if players.hand.score < 21 {
             println("AI PLAY")
             artIntelligence.play()
             println("DEALER PLAY")
@@ -226,13 +245,15 @@ class ViewController: UIViewController {
             println("Dealer revealed")
             dealer.play()
             println("dealer finish playing")
-        }
+       // }
         
 //        while artIntelligence.play(){
 //            if //AI stands {
 //            dealer.play()
 //        }
         update()
+        displayMoney()
+       // displayBet()
         println("finish update")
        
     }
@@ -250,10 +271,14 @@ class ViewController: UIViewController {
         PlayerStatus.text = nil
         AIStatus.text = nil
         DealerStatus.text = nil
-        betLabel.text = "1"
         
+        
+        displayBet()
+        //displaymoney()
         update()
+        
         hideDealer()
+        
         println("hide dealer")
         
         
@@ -286,6 +311,9 @@ class ViewController: UIViewController {
     
     @IBAction func BetStepper(sender: UIStepper) {
         betLabel.text = Int(sender.value).description
+        
+      
+        
     }
 
     
