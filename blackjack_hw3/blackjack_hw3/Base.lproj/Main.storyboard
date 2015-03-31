@@ -178,6 +178,7 @@
                                 </state>
                                 <connections>
                                     <action selector="DealButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NhQ-ur-FAs"/>
+                                    <action selector="StandButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ieN-Ov-Qb6"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AI CARDS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xpG-sR-07w">
@@ -281,12 +282,15 @@
                         <outlet property="AICards" destination="xpG-sR-07w" id="ym5-OI-mm3"/>
                         <outlet property="AIHand" destination="hQx-gD-wrm" id="Wca-ln-f6L"/>
                         <outlet property="AIStatus" destination="pDV-NC-dkq" id="3Yn-2R-G88"/>
+                        <outlet property="DealButton" destination="Igx-u5-Bcf" id="s7s-20-3H4"/>
                         <outlet property="DealerCards" destination="9JR-rM-wig" id="pii-Gw-tMr"/>
                         <outlet property="DealerHand" destination="uch-lp-vak" id="915-w1-Iik"/>
                         <outlet property="DealerStatus" destination="uae-j4-YLz" id="sfD-6K-Paf"/>
+                        <outlet property="HitButton" destination="rmS-Xa-GeP" id="iAO-b2-cbM"/>
                         <outlet property="PlayerCards" destination="fCw-Gi-pw4" id="ltt-sM-xk8"/>
                         <outlet property="PlayerHand" destination="EHC-3J-8vl" id="x0J-wK-O3H"/>
                         <outlet property="PlayerStatus" destination="cNZ-hc-Wvx" id="h86-iS-r7m"/>
+                        <outlet property="StandButton" destination="7my-D2-dsl" id="Xuo-Cy-xUs"/>
                         <outlet property="betLabel" destination="pWc-MW-qyU" id="2of-WQ-NTF"/>
                         <outlet property="moneyLabel" destination="aoY-CJ-8Z0" id="XK1-Rw-ONY"/>
                         <outlet property="stepper" destination="Utq-za-ZTN" id="5Tt-73-5J5"/>

@@ -205,6 +205,7 @@ class ViewController: UIViewController {
         
         
         
+        
 //        if PlayerStatus.text == "Bust" {
 //            artIntelligence.play()
 //            dealer.play()
@@ -226,8 +227,11 @@ class ViewController: UIViewController {
         if players.hand.score < 21 {
             players.hand.hand.append(sharedData.deck.dealCard())}
         else {
+            
             return
         }
+        
+        
         
         //displayMoney()
         update()
@@ -245,6 +249,8 @@ class ViewController: UIViewController {
             println("Dealer revealed")
             dealer.play()
             println("dealer finish playing")
+        
+        
        // }
         
 //        while artIntelligence.play(){
@@ -255,11 +261,21 @@ class ViewController: UIViewController {
         displayMoney()
        // displayBet()
         println("finish update")
+        
        
     }
     
+  
+    
+    @IBOutlet weak var DealButton: UIButton!
+    
+    @IBOutlet weak var StandButton: UIButton!
+    @IBOutlet weak var HitButton: UIButton!
+    
     @IBAction func DealButton(sender: AnyObject) {
         println("Deal")
+        
+        
         players.hand.newHand()
         dealer.hand.newHand()
         artIntelligence.hand.newHand()
@@ -280,6 +296,8 @@ class ViewController: UIViewController {
         hideDealer()
         
         println("hide dealer")
+        
+        
         
         
         
