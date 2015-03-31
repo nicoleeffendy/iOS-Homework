@@ -101,6 +101,7 @@ class ViewController: UIViewController {
     func revealDealer(){
         displayDealerCards()
         displayDealerHand()
+        displayDealerStatus()
     }
     
     func update(){
@@ -110,7 +111,7 @@ class ViewController: UIViewController {
 //      displayDealerHand()
         displayPlayerHand()
         displayAIHand()
-        displayDealerStatus()
+        // displayDealerStatus()
         displayPlayerStatus()
         displayAIStatus()
         displayMoney()
@@ -258,7 +259,7 @@ class ViewController: UIViewController {
 //            dealer.play()
 //        }
         update()
-        displayMoney()
+        //displayMoney()
        // displayBet()
         println("finish update")
         
